@@ -31,6 +31,7 @@
 }
 
 .playArea {
+	--choiceCard: 150px;
 	width: 800px;
 	height: 500px;
 	background-color: #26006e;
@@ -39,4 +40,41 @@
 	overflow: hidden;
 	position: relative;
 	margin-inline: auto;
+}
+
+.choiceCard {
+	position: absolute;
+	width: var(--choiceCard);
+	aspect-ratio: 1/1;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all .8s ease-in-out;
+}
+
+.choiceCard img {
+	max-width: 80%;
+	max-height: 80%;
+}
+
+.bot {
+	bottom: 100%;
+}
+
+.bot img  {
+	transform: scaleY(-1);
+}
+
+.player {
+	top: 100%;
+}
+
+.playArea.is-active .bot {
+	bottom: calc(100% - var(--choiceCard));
+}
+
+.playArea.is-active .player {
+	top: calc(100% - var(--choiceCard));
 }

@@ -5,10 +5,10 @@ import Pager from "./assets/paper.png";
 import Scissors from "./assets/scissors.png";
 
 function App() {
-	const [bot, setBot] = useState('');
-	const [player, setPlayer] = useState('');
+	const [bot, setBot] = useState("Rock");
+	const [player, setPlayer] = useState("Rock");
 
-	const options = ['Rock', 'Pager', "Scissors"];
+	const options = ['Rock', 'Paper', "Scissors"];
 
 	const getImage = (data = "") => {
 		let image;
@@ -25,17 +25,26 @@ function App() {
 		return image;
 	}
 
+	const gameStart = (choice = "") => {
+		if(!choice) return;
+		const random = options[Math.floor(Math.random() * options.length)];
+		setPlayer(choice);
+		setBot(random);
+
+		
+	}
+
 	return <>
 		<div className="playWrapper">
 			<div className="playArea">
-				<img src={() => getImage(bot)} alt="" className="bot" />
-				<img src={() => getImage(player)} alt="" className="player" />
+				<div className="bot choiceCard"><img src={getImage(bot)} alt="" /></div>
+				<div className="player choiceCard"><img src={getImage(player)} alt="" /></div>
 			</div>
 
 			<ul className="controller">
-				<li><button onClick={() => setPlayer("Rock")}><img src={Rock} alt="rock" /></button></li>
-				<li><button onClick={() => setPlayer("Paper")}><img src={Pager} alt="paper" /></button></li>
-				<li><button onClick={() => setPlayer("Scissors")}><img src={Scissors} alt="scissors" /></button></li>
+				<li><button onClick={() => gameStart("Rock")}><img src={Rock} alt="rock" /></button></li>
+				<li><button onClick={() => gameStart("Paper")}><img src={Pager} alt="paper" /></button></li>
+				<li><button onClick={() => gameStart("Scissors")}><img src={Scissors} alt="scissors" /></button></li>
 			</ul>
 		</div>
 	</>;
