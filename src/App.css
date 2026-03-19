@@ -105,7 +105,18 @@
 	z-index: -1;
 }
 
-.numberCountdown {
+.numberCountdown, .resultText {
 	font-size: 80px;
 	color: #fff;
+}
+
+.resetBtn {
+	display: block;
+	background: red;
+	color: white;
+	font-size: 30px;
+	border-radius: 10px;
+	width: 200px;
+	margin-inline: auto;
+	margin-top: 20px;
 }

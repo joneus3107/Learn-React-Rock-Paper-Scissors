@@ -27,6 +27,25 @@ function App() {
 		return image;
 	}
 
+	const checkResult = (player, bot) => {
+		if(player==='Rock') {
+			if(bot==='Scissors') return 'win';
+			if(bot==='Paper') return 'lose';
+		}
+
+		if(player==='Scissors') {
+			if(bot==='Paper') return 'win';
+			if(bot==='Rock') return 'lose';
+		}
+
+		if(player==='Paper') {
+			if(bot==='Rock') return 'win';
+			if(bot==='Scissors') return 'lose';
+		}
+
+		return 'draw';
+	}
+		
 	const gameStart = (choice = "") => {
 		if(!choice) return;
 		let count = 3;
@@ -53,9 +72,12 @@ function App() {
 			}
 		}, 1000);
 
-		const checkResult = (player, bot) => {
+		
+	}
 
-		}
+	const resetGame = () => {
+		setIsPlaying(false);
+		setCountdown(null)
 	}
 
 	return <>
@@ -66,6 +88,13 @@ function App() {
 				</div>
 			: null
 		}
+		{isPlaying? <div className="modal">
+					<div className="modalOverlay"></div>
+					<div>
+						<span className="resultText">You are {checkResult(player, bot)}</span>
+						<button className="resetBtn" onClick={() => resetGame()}>Retry</button>
+					</div>
+				</div>:null}
 		<div className="playWrapper">
 			<div className={`playArea ${isPlaying ? "is-active" : ""}`}>
 				<div className="bot choiceCard"><img src={getImage(bot)} alt="" /></div>
